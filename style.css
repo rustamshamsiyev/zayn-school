@@ -1,6 +1,16 @@
 *::-webkit-scrollbar {
   display: none;
+  width: 0;
+  height: 0;
 }
+
+html,
+body,
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 :root {
   color-scheme: dark;
   font-family: Inter, "Segoe UI", Arial, sans-serif;
