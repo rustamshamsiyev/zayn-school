@@ -1,3 +1,6 @@
+*::-webkit-scrollbar {
+  display: none;
+}
 :root {
   color-scheme: dark;
   font-family: Inter, "Segoe UI", Arial, sans-serif;
@@ -24,7 +27,11 @@ body {
   min-width: 320px;
   margin: 0;
   background:
-    radial-gradient(ellipse at 75% 15%, rgba(108, 40, 145, 0.16), transparent 34rem),
+    radial-gradient(
+      ellipse at 75% 15%,
+      rgba(108, 40, 145, 0.16),
+      transparent 34rem
+    ),
     #0b0910;
 }
 
@@ -154,7 +161,11 @@ h1 span {
   justify-self: center;
   border: 1px solid rgba(189, 104, 242, 0.24);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(150, 69, 194, 0.16), rgba(21, 17, 27, 0.2) 68%);
+  background: radial-gradient(
+    circle,
+    rgba(150, 69, 194, 0.16),
+    rgba(21, 17, 27, 0.2) 68%
+  );
   box-shadow: 0 0 100px rgba(153, 69, 202, 0.13);
 }
 
@@ -177,7 +188,9 @@ h1 span {
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 160ms ease, background 160ms ease;
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
 }
 
 .button:hover {
@@ -244,7 +257,11 @@ h1 span {
   padding: 26px;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: linear-gradient(145deg, rgba(28, 22, 35, 0.96), rgba(18, 14, 23, 0.96));
+  background: linear-gradient(
+    145deg,
+    rgba(28, 22, 35, 0.96),
+    rgba(18, 14, 23, 0.96)
+  );
 }
 
 .teacher-avatar {
