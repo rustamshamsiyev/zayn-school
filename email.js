@@ -1,4 +1,3 @@
-// Maktab email manzilini kiriting, masalan: "info@example.uz".
-const contactEmail = "";
+const contactEmail = "fayzulloqaxramono2@gmail.com";
 
 export default contactEmail;

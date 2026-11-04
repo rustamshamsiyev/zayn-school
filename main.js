@@ -31,7 +31,7 @@ teacherList.innerHTML = teachers
   )
   .join("");
 
-contactForm.addEventListener("submit", (event) => {
+contactForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!contactEmail) {
@@ -41,16 +41,44 @@ contactForm.addEventListener("submit", (event) => {
   }
 
   const formData = new FormData(contactForm);
-  const subject = `ZAYN School saytidan xabar: ${formData.get("name")}`;
-  const body = [
-    `Ism: ${formData.get("name")}`,
-    `Email: ${formData.get("email")}`,
-    "",
-    String(formData.get("message")),
-  ].join("\n");
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const name = String(formData.get("name"));
+  const email = String(formData.get("email"));
+  const message = String(formData.get("message"));
 
-  window.location.href = `mailto:${encodeURIComponent(contactEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  formStatus.textContent = "Email ilovangizda xabar tayyorlandi.";
+  submitButton.disabled = true;
+  formStatus.textContent = "Xabar yuborilmoqda...";
+
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        _subject: `ZAYN School saytidan xabar: ${name}`,
+        _template: "table",
+      }),
+    });
+    const result = await response.json();
+
+    if (!response.ok || (result.success !== "true" && result.success !== true)) {
+      throw new Error(result.message || "Email servisi xabarni qabul qilmadi.");
+    }
+
+    contactForm.reset();
+    formStatus.textContent = "Xabaringiz muvaffaqiyatli yuborildi. Rahmat!";
+  } catch (error) {
+    console.error("Contact form submission failed:", error);
+    formStatus.textContent =
+      "Xabar yuborilmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.";
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
