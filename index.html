@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ZAYN School — bilim va yangi imkoniyatlar sari birinchi qadam."
+    />
+    <meta name="theme-color" content="#0b0910" />
+    <link rel="icon" href="./logo.png" type="image/png" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>ZAYN School | Bilim sari qadam</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="ZAYN School bosh sahifasi">
+        <img src="./logo.png" alt="" class="brand-logo" />
+        <span>ZAYN <span class="brand-accent">SCHOOL</span></span>
+      </a>
+      <nav class="navbar" aria-label="Asosiy navigatsiya">
+        <a href="#home">Bosh sahifa</a>
+        <a href="#about">Biz haqimizda</a>
+        <a href="#teachers">Ustozlar</a>
+        <a href="#contact">Aloqa</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <p class="eyebrow">Kelajagingiz shu yerdan boshlanadi</p>
+          <h1>Bilim bilan <span>yuksaling.</span></h1>
+          <p class="hero-description">
+            ZAYN School’da o‘rganing, maqsad qo‘ying va o‘z imkoniyatlaringizni
+            kashf eting.
+          </p>
+          <a class="button button-primary" href="#contact">Biz bilan bog‘laning</a>
+        </div>
+        <div class="hero-mark" aria-hidden="true">
+          <img src="./logo.png" alt="" />
+        </div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="section-heading">
+          <p class="eyebrow">ZAYN School</p>
+          <h2>Ta’lim — kelajakka sarmoya</h2>
+        </div>
+        <p class="about-copy">
+          Biz har bir o‘quvchining qobiliyatini rivojlantirishga yordam beradigan
+          qulay va ilhomlantiruvchi ta’lim muhitini yaratishga intilamiz.
+          Maqsadimiz — bilim olishni mazmunli va samarali qilish.
+        </p>
+      </section>
+
+      <section class="section teachers" id="teachers">
+        <div class="section-heading">
+          <p class="eyebrow">Bizning jamoa</p>
+          <h2>Ustozlarimiz</h2>
+          <p>O‘qituvchilarimiz haqidagi ma’lumotlar bilan tanishing.</p>
+        </div>
+        <div class="teacher-grid" id="teacher-list"></div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Savollaringiz bormi?</p>
+          <h2>Biz bilan bog‘laning</h2>
+          <p>Formani to‘ldiring — siz bilan bog‘lanish uchun xabar tayyorlaymiz.</p>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <label for="name">Ismingiz</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Ismingizni kiriting"
+            autocomplete="name"
+            required
+          />
+          <label for="email">Elektron pochtangiz</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="name@example.com"
+            autocomplete="email"
+            required
+          />
+          <label for="message">Xabaringiz</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Xabaringizni yozing"
+            rows="5"
+            required
+          ></textarea>
+          <button class="button button-primary" type="submit">Xabar yuborish</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="footer-brand" href="#home">ZAYN SCHOOL</a>
+      <p>&copy; <span id="current-year"></span> ZAYN School. Barcha huquqlar himoyalangan.</p>
+    </footer>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
