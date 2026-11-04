@@ -36,7 +36,7 @@ contactForm.addEventListener("submit", async (event) => {
 
   if (!contactEmail) {
     formStatus.textContent =
-      "Xabar yuborish uchun email.js faylida maktab email manzilini kiriting.";
+      "Xabar yuborish hozircha ishlamayapti. Iltimos, Telegram orqali @fayz1k_80 manziliga murojaat qiling.";
     return;
   }
 
