@@ -1,4 +1,4 @@
-import contactEmail from "./email.js";
+import emailConfig from "./email.js";
 
 const teachers = [
   {
@@ -19,18 +19,8 @@ const teacherList = document.getElementById("teacher-list");
 const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 
-contactForm.action = `https://formsubmit.co/${contactEmail}`;
-
-const query = new URLSearchParams(window.location.search);
-if (query.get("sent") === "true") {
-  formStatus.textContent = "Xabaringiz yuborildi. Tez orada siz bilan bog‘lanamiz.";
-  query.delete("sent");
-  const search = query.toString();
-  window.history.replaceState(
-    null,
-    "",
-    `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`,
-  );
+if (window.emailjs) {
+  window.emailjs.init({ publicKey: emailConfig.publicKey });
 }
 
 teacherList.innerHTML = teachers
@@ -44,5 +34,38 @@ teacherList.innerHTML = teachers
     `,
   )
   .join("");
+
+contactForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  formStatus.textContent = "Xabar yuborilmoqda...";
+
+  try {
+    if (!window.emailjs) {
+      throw new Error("EmailJS SDK failed to load.");
+    }
+
+    const response = await window.emailjs.sendForm(
+      emailConfig.serviceId,
+      emailConfig.templateId,
+      contactForm,
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`EmailJS returned status ${response.status}`);
+    }
+
+    contactForm.reset();
+    formStatus.textContent = "Xabaringiz muvaffaqiyatli yuborildi. Rahmat!";
+  } catch (error) {
+    console.error("EmailJS contact form submission failed:", error);
+    formStatus.textContent =
+      "Xabar yuborilmadi. EmailJS sozlamalarini va internet aloqasini tekshiring.";
+  } finally {
+    submitButton.disabled = false;
+  }
+});
 
 document.getElementById("current-year").textContent = new Date().getFullYear();
