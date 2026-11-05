@@ -61,8 +61,22 @@ contactForm.addEventListener("submit", async (event) => {
     formStatus.textContent = "Xabaringiz muvaffaqiyatli yuborildi. Rahmat!";
   } catch (error) {
     console.error("EmailJS contact form submission failed:", error);
-    formStatus.textContent =
-      "Xabar yuborilmadi. EmailJS sozlamalarini va internet aloqasini tekshiring.";
+    const details = error instanceof Error ? error.message : String(error);
+    const status =
+      typeof error === "object" && error !== null && "status" in error
+        ? ` (status ${String(error.status)})`
+        : "";
+    const responseText =
+      typeof error === "object" &&
+      error !== null &&
+      "text" in error &&
+      typeof error.text === "string"
+        ? `: ${error.text}`
+        : "";
+    formStatus.textContent = `Xabar yuborilmadi${status}: ${details}${responseText}`.slice(
+      0,
+      240,
+    );
   } finally {
     submitButton.disabled = false;
   }
