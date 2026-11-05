@@ -73,7 +73,22 @@
             Formani to‘ldiring — siz bilan bog‘lanish uchun xabar tayyorlaymiz.
           </p>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form
+          class="contact-form"
+          id="contact-form"
+          method="POST"
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="ZAYN School saytidan yangi xabar"
+          />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://rustamshamsiyev.github.io/zayn-school/?sent=true#contact"
+          />
           <label for="name">Ismingiz</label>
           <input
             type="text"

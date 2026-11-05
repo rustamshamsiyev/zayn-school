@@ -329,6 +329,10 @@ h1 span {
   font: inherit;
 }
 
+.contact-form input[type="hidden"] {
+  display: none;
+}
+
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--accent);
